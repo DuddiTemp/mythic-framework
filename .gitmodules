@@ -1,0 +1,3 @@
+[submodule "resources/oxmysql"]
+	path = resources/oxmysql
+	url = git@github.com:DuddiTemp/oxmysql.git
