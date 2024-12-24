@@ -220,10 +220,11 @@ _pdAlerts = {
 			TriggerServerEvent("EmergencyAlerts:Server:DoPredefined", type, description)
 		end
 	end,
-	Create = function(self, code, title, type, location, description, isPanic, blip, styleOverride, isArea, camera)
+	Create = function(self, code, title, type, location, description, isPanic, blip, styleOverride, isArea, camera, metadata)
 		ids = ids + 1
 
 		local areaBlip = {}
+
 		if blip then
 			blip.id = string.format("emrg-%s", _blipCount)
 
@@ -255,6 +256,7 @@ _pdAlerts = {
 			blip = blip,
 			style = styleOverride or type,
 			camera = camera or false,
+			metadata = metadata or false
 		}
 
 		local duty = LocalPlayer.state.onDuty
@@ -265,7 +267,7 @@ _pdAlerts = {
 				Sounds.Play:Distance(15, "alert_normal.ogg", 0.5)
 			end
 
-			if blip ~= nil and location ~= nil then
+			if blip and location ~= nil then
 				local eB = Blips:Add(
 					blip.id,
 					blip.title,
@@ -317,7 +319,7 @@ end)
 
 RegisterNetEvent(
 	"EmergencyAlerts:Client:Add",
-	function(code, title, type, location, extra, isPanic, blip, styleOverride, isArea, camera)
-		EmergencyAlerts:Create(code, title, type, location, extra, isPanic, blip, styleOverride, isArea, camera)
+	function(code, title, type, location, extra, isPanic, blip, styleOverride, isArea, camera, metadata)
+		EmergencyAlerts:Create(code, title, type, location, extra, isPanic, blip, styleOverride, isArea, camera, metadata)
 	end
 )

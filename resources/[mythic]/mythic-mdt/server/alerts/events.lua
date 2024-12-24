@@ -286,7 +286,8 @@ AddEventHandler("EmergencyAlerts:Server:ServerDoPredefined", function(src, type,
 				description or data.description or "",
 				data.isPanic or false,
 				data.blip or false,
-				data.styleOverride
+				data.styleOverride,
+				description and description.metadata or false
 			)
 		end
 	end)
@@ -318,7 +319,9 @@ RegisterNetEvent("EmergencyAlerts:Server:DoPredefined", function(type, descripti
 			data.isPanic or false,
 			data.blip or false,
 			data.styleOverride,
-			false
+			false,
+			false,
+			description and description.metadata or false
 		)
 	else
 		local coords = GetEntityCoords(GetPlayerPed(src))
@@ -340,7 +343,9 @@ RegisterNetEvent("EmergencyAlerts:Server:DoPredefined", function(type, descripti
 				data.isPanic or false,
 				data.blip or false,
 				data.styleOverride,
-				data.isArea or false
+				data.isArea or false,
+				false,
+				description and description.metadata or false
 			)
 		end)
 	end
